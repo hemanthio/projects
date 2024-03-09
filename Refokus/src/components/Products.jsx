@@ -25,12 +25,12 @@ case:true},
     ]
     
   return (
-    <>
+    <div className='mt-32'>
     {products.map((product,index)=>(
         <Product product={product}/>
     ))}
     
-    </>
+    </div>
     
   )
 }
