@@ -10,9 +10,9 @@ var images =[
 ]
 
   return (
-    <div className='mt-40'>
+    <div className=' py-20 w-full relative overflow-hidden mt-40'>
     {images.map((image,index)=>(
- <Marquee imageurl={image}/>
+ <Marquee key={index} directon={index===0? "left":"right"} imageurl={image}/>
     ))}
     
     </div>
