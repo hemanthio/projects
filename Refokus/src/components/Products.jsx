@@ -1,5 +1,6 @@
-import React from 'react'
+import {React,useState} from 'react'
 import Product from './Product'
+import {motion} from 'framer-motion'
 
 function Products() {
     var products =[
@@ -23,16 +24,35 @@ case:true},
     
     
     ]
+
+    const [pos ,setPos]=useState(0)
+    const mover =(val)=>{
+        setPos(val*23)
+    }
     
-  return (
-    <div className='mt-32'>
-    {products.map((product,index)=>(
-        <Product product={product}/>
-    ))}
+    return (
+        <div className='mt-32 relative'>
+            {products.map((product, index) => (
+  <div key={index}>
+      <Product product={product} mover={mover} count={index}/>
+           <div className='absolute top-0 w-full h-full pointer-events-none'>
+                <motion.div initial={{y:pos, x:"-50%"}} 
+                 animate={{y:pos+`rem`}}
+                 transition={{ease:[0.76, 0, 0.24, 1],duration:0.6 }}
+                 className='window absolute  w-[26rem] left-[42%] overflow-hidden   h-[23rem] '>
+                <motion.div animate={{y:-pos + `rem`}}   transition={{ease:[0.76, 0, 0.24, 1],duration:0.6 }} className=' bg-sky-100 w-full  h-full '></motion.div>
+               <motion.div animate={{y:-pos + `rem`}}   transition={{ease:[0.76, 0, 0.24, 1],duration:0.6 }} className=' bg-sky-200 w-full  h-full '></motion.div>
+              <motion.div animate={{y:-pos + `rem`}}   transition={{ease:[0.76, 0, 0.24, 1],duration:0.6 }} className=' bg-sky-300 w-full  h-full '></motion.div>
+                 <motion.div animate={{y:-pos + `rem`}}   transition={{ease:[0.76, 0, 0.24, 1],duration:0.6 }} className=' bg-sky-400 w-full  h-full '></motion.div>
+               <motion.div animate={{y:-pos + `rem`}}   transition={{ease:[0.76, 0, 0.24, 1],duration:0.6 }} className=' bg-sky-500 w-full  h-full '></motion.div>
+
+                        </motion.div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
     
-    </div>
-    
-  )
 }
 
 export default Products
